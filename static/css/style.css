@@ -1,0 +1,149 @@
+/* Define CSS variables */
+:root {
+  --color1: #fffdfd;
+  --color2: #000000;
+  --color3: #009dff;
+  --transitionDuration: 1s;
+}
+
+/* Reset Default Settings */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background-color: #eee;
+  font-family: 'Poppins', sans-serif;
+}
+
+.card {
+  background-color: var(--color1);
+  color: var(--color2);
+  width: 320px;
+  height: 560px;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  border: none;
+  margin-top: 20px; /* Add margin to create space between navbar and card */
+}
+
+/* .card::before {
+  color: var(--color3);
+  width: fit-content;
+  height: fit-content;
+  font-size: 50px;
+  font-weight: bold;
+  font-style: italic;
+  opacity: 15%;
+  content: var(--dynamic-content);
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%)rotate3d(1, 1, 1, 45deg);
+} */
+
+/* Circle */
+.card::after {
+  background-color: var(--color3);
+  width: 400px;
+  height: 500px;
+  border-radius: 50%;
+  z-index: 0;
+  transition-duration: calc(var(--transitionDuration) / 2);
+  transition-property: width, height, transform;
+  transition-timing-function: ease-in-out;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(45%, -45%);
+}
+
+.card:hover::after {
+  width: 500px;
+  height: 500px;
+  transform: translate(30%, -62%);
+}
+
+.card__img {
+  width: 200px;
+  height: 270px;
+  z-index: 1;
+  transition: top var(--transitionDuration);
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0px 5px 30px rgb(3, 0, 0);
+}
+
+.card:hover .card__img {
+  top: 24%;
+}
+
+.card__title {
+  font-weight: 600;
+  white-space: nowrap;
+  transition: top var(--transitionDuration);
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translateX(-50%);
+}
+
+.card:hover .card__title {
+  top: 50%;
+}
+
+.card__content {
+  height: 70px;
+  font-size: 14px;
+  font-weight: 300;
+  opacity: 0;
+  transition: top var(--transitionDuration), opacity var(--transitionDuration) calc(var(--transitionDuration) / 2);
+  position: absolute;
+  left: 50%;
+  top: 150%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.card:hover .card__content {
+  opacity: 100%;
+  top: 62%;
+}
+
+.product-description {
+  text-align: center;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.card__link {
+  background-color: var(--color2);
+  color: var(--color1);
+  padding: 10px 15px;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 3px;
+  transition: top var(--transitionDuration);
+  position: absolute;
+  left: 50%;
+  top: 250%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+}
+
+.card:hover .card__link {
+  top: 94%;
+}
+
+.card__link:hover {
+  background-color: var(--color3);
+}

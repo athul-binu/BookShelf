@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"
+</head>
+<style>
+    .card:before {
+        color: var(--color3);
+        width: fit-content;
+        height: fit-content;
+        font-size: 50px;
+        font-weight: bold;
+        font-style: italic;
+        opacity: 15%;
+        content: attr(data-bookname); /* Using attr() to get the value from data-bookname attribute */
+        position: absolute;
+        left: 50%;
+        top: 60%;
+        transform: translate(-50%, -50%) rotate3d(1, 1, 1, 45deg);
+    }
+</style>
+
+<body style="
+      background-image: url('{% static 'img/Desktop06.png' %}');
+      width: 100%;
+      background-size: cover;
+      background-position: center;">
+    <nav class="navbar navbar-expand-lg navbar-white bg-white">
+        <div class="container-fluid">
+            <!-- Apply the font to the navbar-brand -->
+            <a class="navbar-brand" href="#">BookShelf</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="d-flex mx-auto" method="POST">
+                    <select class="form-select me-2" name="category">
+                        <option value="">All Categories</option>
+                    </select>
+                    <select class="form-select me-2" name="price_sort">
+                        <option value="">Sort by Price</option>
+                        <option value="low_to_high">Low to High</option>
+                        <option value="high_to_low">High to Low</option>
+                    </select>
+                  </form>
+                  <form class="d-flex mx-auto text-center">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 300px;"> <!-- Adjusted style -->
+                    <button class="btn btn-light" type="submit">Search</button>
+                  </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container text-center">
+        <div class="row">
+            {% for x in data %}
+
+          <div class="col mt-3">
+                <div class='card ms-4' data-bookname="{{ x.bookname }}">
+                  <img src='{{x.book_img.url}}' class='card__img'>
+                  <h2 class='card__title'>{{x.bookname}}</h2>
+                  <div class='card__content'>
+                    <h3>{{x.category_id.category_name}}</h3>
+                    <p class="product-description">{{x.bookdes}}</p>
+                  </div>
+                  <a href='{% url 'book_details' book_id=x.book_id %}' class='card__link'>More Info</a>
+                </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-KcloE3vE5K4KwpDXkXdb6JCFf4vOu0Nx4P+44jgJjWQ=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-VyGxg+5nOMNM23CuAa5psNKeQBfnnd/zfmw5nN1cgZ/rQqOyHzEd4JN5oNr5arF3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-58+MhpxMzTtZViuXVFt7IWHheEJ2kXdurqLoFbTJYhx0IYQj/JZf+A+yPSyI6CnG" crossorigin="anonymous"></script>
+    </body>
+    </html>
+    
