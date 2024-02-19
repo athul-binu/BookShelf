@@ -48,9 +48,10 @@
                         <option value="low_to_high">Low to High</option>
                         <option value="high_to_low">High to Low</option>
                     </select>
-                  </form>
-                  <form class="d-flex mx-auto text-center">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 300px;"> <!-- Adjusted style -->
+                </form>
+                <form method="POST" class="d-flex mx-auto text-center">
+                      {% csrf_token %} 
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"name="search" style="width: 300px;"> <!-- Adjusted style -->
                     <button class="btn btn-light" type="submit">Search</button>
                   </form>
             </div>
