@@ -19,15 +19,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from homeui import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.mainpage),
+    path('login/', views.mainpage, name='login'),
     path('', views.book),
     path('bookd/<int:book_id>', views.book_details, name='book_details'),
-    path('run/', views.runcmd)
-
+    path('review/<int:book_id>', views.review, name='review'),
+    path('run/', views.runcmd, name='run'),
+    path('logout/', views.sessiondelete, name='logout'),  
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
-
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

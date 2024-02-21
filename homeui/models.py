@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class category(models.Model):
-    category_id=models.AutoField(primary_key=True)
+    category_id=models.CharField(primary_key=True,max_length=50)
     category_name=models.CharField( max_length=50)
     
     class Meta:
@@ -26,8 +26,9 @@ class userModel(models.Model):
 class bookmodel(models.Model):
     book_id=models.CharField(primary_key=True,max_length=50)
     bookname=models.CharField(max_length=50)
+    quantity=models.IntegerField(null=True)
     bookdes=models.TextField(null=True)
-    bookprice=models.CharField(max_length=50,null=True)
+    bookprice=models.IntegerField(null=True)
     book_img=models.ImageField(upload_to="images/",null=True)
     category_id=models.ForeignKey(category, on_delete=models.CASCADE)
     userid=models.ForeignKey(userModel,on_delete=models.CASCADE)
@@ -43,3 +44,14 @@ class bookmodel(models.Model):
 
 
 
+class Writereview(models.Model):
+    review_id=models.AutoField(primary_key=True)
+    book_id=models.ForeignKey(bookmodel, on_delete=models.CASCADE)
+    
+    review_des=models.TextField()
+    
+    
+    class Meta:
+        db_table="review_table"
+    def __str__(self):
+        return self.book_id.bookname
