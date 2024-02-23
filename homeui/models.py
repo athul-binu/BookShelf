@@ -24,7 +24,7 @@ class userModel(models.Model):
         return self.username
     
 class bookmodel(models.Model):
-    book_id=models.CharField(primary_key=True,max_length=50)
+    book_id=models.AutoField(primary_key=True)
     bookname=models.CharField(max_length=50)
     quantity=models.IntegerField(null=True)
     bookdes=models.TextField(null=True)
@@ -47,11 +47,19 @@ class bookmodel(models.Model):
 class Writereview(models.Model):
     review_id=models.AutoField(primary_key=True)
     book_id=models.ForeignKey(bookmodel, on_delete=models.CASCADE)
+    userid=models.ForeignKey(userModel,on_delete=models.CASCADE)
+    
     
     review_des=models.TextField()
     
     
     class Meta:
-        db_table="review_table"
+        db_table="review_table" 
     def __str__(self):
         return self.book_id.bookname
+class cartmodel(models.Model):
+    cart_id=models.AutoField(primary_key=True)
+    book_id=models.ForeignKey(bookmodel,on_delete=models.CASCADE)
+    userid=models.ForeignKey(userModel,on_delete=models.CASCADE)
+    quantity=models.IntegerField(null=True)
+    

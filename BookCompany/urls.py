@@ -26,8 +26,10 @@ urlpatterns = [
     path('', views.book),
     path('bookd/<int:book_id>', views.book_details, name='book_details'),
     path('review/<int:book_id>', views.review, name='review'),
+    path('cart/<int:book_id>', views.cart, name='cart'),
+    path('add-book/', views.add_book, name='add_book'),
     path('run/', views.runcmd, name='run'),
-    path('logout/', views.sessiondelete, name='logout'),  
+    path('logout/', views.logout_view, name='logout'),  
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

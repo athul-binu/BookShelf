@@ -1,0 +1,51 @@
+/* Custom CSS for Add Book page */
+
+/* Set background color for the body */
+body {
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+/* Style the container */
+.container {
+    max-width: 600px; /* Limit the width of the container */
+    margin: auto; /* Center the container horizontally */
+    padding: 20px; /* Add some padding around the content */
+    background-color: #fff; /* White background for the container */
+    border-radius: 10px; /* Add rounded corners to the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a shadow to the container */
+}
+
+/* Style the form title */
+h1 {
+    text-align: center; /* Center align the heading */
+    color: #333; /* Dark gray color for the heading */
+}
+
+/* Style form labels */
+.form-label {
+    font-weight: bold; /* Make labels bold */
+}
+
+/* Style form inputs and textareas */
+.form-control {
+    border: 1px solid #ced4da; /* Add a border */
+}
+
+/* Style form select menus */
+.form-select {
+    border: 1px solid #ced4da; /* Add a border */
+}
+
+/* Style the Add Book button */
+.btn-primary {
+    width: 100%; /* Make the button full-width */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%; /* Allow container to take full width on smaller screens */
+        border-radius: 0; /* Remove border radius */
+        box-shadow: none; /* Remove box shadow */
+    }
+}

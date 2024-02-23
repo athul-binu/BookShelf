@@ -529,14 +529,12 @@
   
   }
 
-  /* Style for the reviews section */
 .reviews-section {
     padding: 20px;
     background-color: #ffffff36;
     margin-top: 20px;
 }
 
-/* Style for each review box */
 .review-box {
     border: 1px solid #ccc;
     padding: 10px;
@@ -544,12 +542,11 @@
     background-color: #ffffff36;
 }
 
-/* Style for the username */
+
 .review-box strong {
     color: #000000;
 }
 
-/* Style for the review text */
 .review-box p {
     margin: 0;
 }

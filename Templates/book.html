@@ -25,10 +25,9 @@
     }
 </style>
 <body style="
-      background-image: url('{% static 'img/Desktop06.png' %}');
+      background-image: url('{% static 'img/img.png' %}');
       width: 100%;
-      background-size: cover;
-      background-position: center;">
+      background-size: cover;">
       <nav class="navbar navbar-expand-lg navbar-light bg-light py-md-2 py-1">
         <div class="container">
           <a class="navbar-brand text-dark fw-bold" href="#">BookShelf</a>
@@ -40,35 +39,37 @@
             <form class="d-flex mx-auto" method="POST">
               {% csrf_token %}
               <div class="input-group">
-                <input class="form-control " type="search" placeholder="Search" aria-label="Search" name="search">
+                <input class="form-control " value="{{searched}}" type="search" placeholder="Search" aria-label="Search" name="search">
               </div>
           </div>
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <form class="d-flex" method="POST">
               {% csrf_token %}
-              <select name="category" class="form-select me-2 py-2">
-                <option value="">All Categories</option>
+              <select name="category" class="form-select me-2 py-2" onchange="this.form.submit()">
+                <option value="{{catsearched}}" >All Categories</option>
+                {% comment %} <option  value="{{catsearched}}">{{catsearched}}</option> {% endcomment %}
                 {% for category in dataf %}
-                  <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+                <option value="{{ category.category_id }}">{{ category.category_name }}</option>
                 {% endfor %}
               </select>
-              <select id="price_order" class="form-select me-2 py-2">
+              <select id="price_order" name="price_order" class="form-select me-2 py-2 " onchange="this.form.submit()">
                 <option value="">Price Order</option>
+                <option hidden></option>
                 <option value="asc">Low to High</option>
                 <option value="desc">High to Low</option>
               </select>
-              <button class="btn btn-primary form-control me-2 me-2 px-3" type="submit">Apply Filters</button>
+              {% comment %} <button class="btn btn-primary form-control me-2 me-2 px-3" type="submit">Apply Filters</button> {% endcomment %}
             </form>
-            {% if user.is_authenticated %}
-            <form action="{% url 'logout' %}" method="POST">
+            <a href="{% url 'add_book' %}" class="btn btn-outline-dark py-2 ms-2 me-2 form-select"><i class="bi bi-plus-circle-fill me-1"></i>Add Book</a>
+            {% if 'user' in request.session %}
+            <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-outline-dark py-2">Logout</button>
             </form>
-        {% else %}
-            <button class="btn btn-outline-dark py-2" type="button" onclick="window.location.href='{% url 'run' %}'">
-                <i class="bi bi-person"></i> Login
-            </button>
-        {% endif %}
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-outline-dark py-2">Login</a>
+            {% endif %}
+            <!-- Add Book Icon Button -->
           </div>
         </div>
       </nav>
